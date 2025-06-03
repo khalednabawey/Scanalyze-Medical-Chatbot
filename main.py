@@ -36,6 +36,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path)
 
 tokenizer.pad_token = tokenizer.eos_token
+
 # Initialize the HuggingFace text-generation pipeline
 llm_pipeline = pipeline(
     model=model,

@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y git \
     git \
     curl \
     cmake \
+    libgl1 \
     ninja-build \
+    libglib2.0-0 \
     libopenblas-dev \
     && useradd -m appuser \
     && rm -rf /var/lib/apt/lists/*
@@ -26,6 +28,9 @@ COPY . /app
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+# Copy app code
+COPY . .
 
 # Expose FastAPI port
 EXPOSE 8000
