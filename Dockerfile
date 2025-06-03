@@ -2,7 +2,16 @@
 FROM python:3.10-slim
 
 # Install OS dependencies
-RUN apt-get update && apt-get install -y git && apt-get clean
+RUN apt-get update && apt-get install -y git \
+    build-essential \
+    git \
+    curl \
+    cmake \
+    ninja-build \
+    libopenblas-dev \
+    && useradd -m appuser \
+    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
